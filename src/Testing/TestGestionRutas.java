@@ -13,21 +13,22 @@ import Modelo.javabean.Furgoneta;
 import Modelo.javabean.Ruta;
 
 import Modelo.negocio.GestionRutas;
+import interfazes.IGestionRutas;
 
 public class TestGestionRutas {
 
-//    private static IGestionRutas irutas;
+    private static IGestionRutas irutas;
     private static Scanner leer;
 	private static Ruta ruta;
-	private static GestionRutas gestion;
+	
 
 	static {
-		gestion = new GestionRutas();
+		irutas = new GestionRutas();
 	}
 
     
     public static void main(String[] args) {
-    	
+  
     	// Ruta para test
     	Camion camion4 = new Camion("4523MDF", "Volvo", "FM/FH", 123_300.0, 22.3, 5_600.0, 3_600.0, 3);
     	Empleado empleado1 = new Empleado("34234423b", "Santiago", "Cucudrulu", "acucudrulu@gmail.com", "H");
@@ -53,10 +54,10 @@ public class TestGestionRutas {
     
     // Método para inyectar la ruta extra
     private static void creaRutaTest() {
-    	gestion.addRuta(ruta);
+    	irutas.addRuta(ruta);
 	}
     private static void testVerRutas() {
-    	for(Ruta rut:gestion.listaRutas){
+    	for(Ruta rut:irutas.getRutas()){
         	System.out.println(rut);
         }
     }
@@ -89,7 +90,7 @@ public class TestGestionRutas {
     	imprimeRutas("antes");
         
         // Elimina
-    	gestion.eliminarRuta(ruta);
+    	irutas.eliminarRuta(ruta);
     	
     	imprimeRutas("despues");
     }
@@ -99,8 +100,8 @@ public class TestGestionRutas {
     	
     	leer = new Scanner(System.in);
     	
-    	int primerIndiceRutas = gestion.listaRutas.getFirst().getIdRuta();
-    	int ultimoIndiceRutas = gestion.listaRutas.getLast().getIdRuta();
+    	int primerIndiceRutas = irutas.getRutas().getFirst().getIdRuta();
+    	int ultimoIndiceRutas = irutas.getRutas().getLast().getIdRuta();
     	
     	System.out.println("Eliminar ruta por id");    	
     	System.out.println("Introduzca un id [" + primerIndiceRutas + "-" + ultimoIndiceRutas + "]"); 
@@ -109,7 +110,7 @@ public class TestGestionRutas {
     	
     	imprimeRutas("antes");
         
-    	gestion.eliminarRuta(indice);
+    	irutas.eliminarRuta(indice);
     	
     	imprimeRutas("despues");
     }
@@ -120,7 +121,7 @@ public class TestGestionRutas {
 
     	// Para facilitar la búsqueda de usuarios
     	ArrayList<String> listaDnis = new ArrayList<String>();
-    	for(Ruta rut: gestion.listaRutas) {
+    	for(Ruta rut: irutas.getRutas()) {
     		String dni = rut.getEmpleado().getDni();
     		if (!listaDnis.contains(dni)) {
     			listaDnis.add(dni);
@@ -136,7 +137,7 @@ public class TestGestionRutas {
     	leer = new Scanner(System.in);
     	String dni = leer.next();
     	System.out.println("\nRESULTADOS ::::::::::::::");    	
-    	for(Ruta el: gestion.rutasPorEmpleado(dni)) {
+    	for(Ruta el: irutas.rutasPorEmpleado(dni)) {
     		System.out.println(el);
     	}
     	leer.close();
@@ -148,7 +149,7 @@ public class TestGestionRutas {
     	
     	// Para facilitar la búsqueda de vehiculos
     	ArrayList<String> listaVehiculos = new ArrayList<String>();
-    	for(Ruta rut: gestion.listaRutas) {
+    	for(Ruta rut: irutas.getRutas()) {
     		String matricula = rut.getVehiculoUsado().getMatricula();
     		if (!listaVehiculos.contains(matricula)) {
     			listaVehiculos.add(matricula);
@@ -164,7 +165,7 @@ public class TestGestionRutas {
     	leer = new Scanner(System.in);
     	String tipo = leer.next();
     	System.out.println("\nRESULTADOS PARA "+ tipo +"::::::::::::::");    	
-    	for(Ruta el: gestion.rutasPorVehiculo(tipo)) {
+    	for(Ruta el: irutas.rutasPorVehiculo(tipo)) {
     		System.out.println(el);
     	}
     	leer.close();
@@ -175,7 +176,7 @@ public class TestGestionRutas {
     	
     	System.out.println("TOTAL KM POR VEHICULO");    	
     	
-    	gestion.totalKmPorVehiculo().forEach((matricula, km) -> {
+    	irutas.totalKmPorVehiculo().forEach((matricula, km) -> {
     		System.out.println(matricula + " tiene: " + km + "km");
     	});;
     	
@@ -186,7 +187,7 @@ public class TestGestionRutas {
     	
     	// Para facilitar la búsqueda de vehiculos
     	ArrayList<String> listaDestinos = new ArrayList<String>();
-    	for(Ruta rut: gestion.listaRutas) {
+    	for(Ruta rut: irutas.getRutas()) {
     		String destino = rut.getDestino();
     		if (!listaDestinos.contains(destino)) {
     			listaDestinos.add(destino);
@@ -203,7 +204,7 @@ public class TestGestionRutas {
     	leer = new Scanner(System.in);
     	String destino = leer.next();
     	System.out.println("\nRESULTADOS PARA "+ destino.toUpperCase() +"::::::::::::::");    	
-    	for(Ruta el: gestion.rutasPorDestino(destino)) {
+    	for(Ruta el: irutas.rutasPorDestino(destino)) {
     		System.out.println(el);
     	}
     	leer.close();
@@ -225,7 +226,7 @@ public class TestGestionRutas {
     	LocalDate fechaInicioParsed = LocalDate.parse(fechainicio, formateador);
     	LocalDate fechaFinParsed = LocalDate.parse(fechafin, formateador);
     	
-    	for(Ruta rut: gestion.rutasIntervaloFechas(fechaInicioParsed, fechaFinParsed)) {
+    	for(Ruta rut: irutas.rutasIntervaloFechas(fechaInicioParsed, fechaFinParsed)) {
     		System.out.println(rut);
     	}
     	leer.close();    	
@@ -237,7 +238,7 @@ public class TestGestionRutas {
     	
     	System.out.println("\nTotal de Km por tipo de vehiculo:\n");
     	;
-    	gestion.totalKmPorTipoVehiculo().forEach((tipo, km) -> {
+    	irutas.totalKmPorTipoVehiculo().forEach((tipo, km) -> {
     		System.out.println(tipo + " acumulan " + km + "km" );
     	});
     }
@@ -245,14 +246,14 @@ public class TestGestionRutas {
     
     public static void testTipoRuta() {
     	System.out.println("\nDistancia literal de ruta:\n");
-    	for(Ruta el: gestion.listaRutas) {
+    	for(Ruta el: irutas.getRutas()) {
     		System.out.println(el.getOrigenDestino() + ": " + el.tipoRuta());
     	}
     }
     
     public static void testCalcularConsumoMedio() {
     	System.out.println("\nConsumo medio por cada ruta:\n");
-    	for(Ruta el: gestion.listaRutas) {
+    	for(Ruta el: irutas.getRutas()) {
     		System.out.println(el.calcularConsumoEstimado());
     	}
     }
