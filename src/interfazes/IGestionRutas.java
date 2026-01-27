@@ -1,4 +1,4 @@
-package Modelo.negocio;
+package interfazes;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -7,6 +7,8 @@ import java.util.Map;
 import Modelo.javabean.Ruta;
 
 public interface IGestionRutas {
+	
+	List<Ruta> getRutas();
 
 	void addRuta(Ruta ruta);
 
