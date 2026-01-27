@@ -23,8 +23,9 @@ src/
 │   │   ├── Empleado.java      # Datos de empleados
 │   │   └── Ruta.java          # Información de rutas
 │   └── negocio/           # Lógica de negocio
-│       ├── IGestionRutas.java # Interfaz de gestión
 │       └── GestionRutas.java  # Implementación de la gestión
+├── interfazes/            # Interfaces del sistema
+│   └── IGestionRutas.java # Interfaz de gestión de rutas
 └── Testing/               # Clases de prueba
     ├── TestGestionRutas.java
     └── TestHerencia.java
@@ -77,6 +78,7 @@ src/
 
 #### `IGestionRutas` (Interfaz)
 Define las operaciones del sistema:
+- Listar todas las rutas (getRutas)
 - Agregar y eliminar rutas
 - Consultar rutas por empleado/vehículo/destino
 - Estadísticas de kilómetros por vehículo
@@ -91,6 +93,7 @@ Define las operaciones del sistema:
 ## ⚡ Funcionalidades Principales
 
 ### 🔍 **Consultas y Filtros**
+- ✅ Listar todas las rutas del sistema
 - ✅ Rutas por empleado (DNI)
 - ✅ Rutas por vehículo (matrícula)
 - ✅ Rutas por destino
@@ -155,25 +158,34 @@ El sistema incluye datos preconfigurados:
 
 ## 🎯 Casos de Uso Principales
 
-### 1. **Gestión de Flota**
+### 1. **Consulta General de Rutas**
+```java
+// Obtener todas las rutas del sistema
+List<Ruta> todasLasRutas = gestion.getRutas();
+for(Ruta ruta : todasLasRutas) {
+    System.out.println(ruta);
+}
+```
+
+### 2. **Gestión de Flota**
 ```java
 // Consultar rutas de un vehículo específico
 List<Ruta> rutasCamion = gestion.rutasPorVehiculo("4634FRT");
 ```
 
-### 2. **Control de Empleados**
+### 3. **Control de Empleados**
 ```java
 // Ver todas las rutas de un empleado
 List<Ruta> rutasEmpleado = gestion.rutasPorEmpleado("56232425b");
 ```
 
-### 3. **Análisis de Rendimiento**
+### 4. **Análisis de Rendimiento**
 ```java
 // Estadísticas de uso por tipo de vehículo
 Map<String, Long> kmPorTipo = gestion.totalKmPorTipoVehiculo();
 ```
 
-### 4. **Planificación de Rutas**
+### 5. **Planificación de Rutas**
 ```java
 // Filtrar rutas por período
 List<Ruta> rutasDiciembre = gestion.rutasIntervaloFechas(
