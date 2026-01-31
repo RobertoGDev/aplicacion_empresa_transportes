@@ -58,7 +58,6 @@ public class GestionRutas implements IGestionRutas {
 		rutas.add(new Ruta(14, LocalDate.of(2026, 1, 12), "Badajoz", "Cáceres", camion4, empleado1, 85.2, 520));
 		rutas.add(new Ruta(15, LocalDate.of(2026, 1, 15), "Cáceres", "Salamanca", furgon3, empleado2, 195.6, 1_180));
 		rutas.add(new Ruta(16, LocalDate.of(2026, 1, 18), "Salamanca", "Valladolid", camion5, empleado3, 110.9, 680));
-		rutas.add(new Ruta(17, LocalDate.of(2026, 1, 22), "Valladolid", "Madrid", furgon4, empleado4, 185.4, 1_100));
 	};
 	
 	
