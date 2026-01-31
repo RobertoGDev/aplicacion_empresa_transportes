@@ -37,7 +37,7 @@ public class TestGestionRutas {
     	// Probar los métodos
     	
 //    	testVerRutas(); // Ejecutar este método a demanda, para poder comparar los resultados
-//		testAddRuta();
+		testAddRuta();
 //		testEliminarRutaObjeto();
 //		testEliminarRutaId();
 //		testRutasPorEmpleado();
@@ -47,22 +47,25 @@ public class TestGestionRutas {
 //		testRutasIntervaloFechas();
 //		testTotalKmPorTipoVehiculo();
     	
-    	testTipoRuta();
+//    	testTipoRuta();
 //    	testCalcularConsumoMedio();
         
     }
     
-    // Método para inyectar la ruta extra
-    private static void creaRutaTest() {
-    	irutas.addRuta(ruta);
-	}
     private static void testVerRutas() {
     	for(Ruta rut:irutas.getRutas()){
         	System.out.println(rut);
         }
     }
+    
+    
+    // Método para inyectar la ruta extra
+    private static void creaRutaTest() {
+    	irutas.addRuta(ruta);
+	}
+
     // Método para imprimir rutas
-    private static void imprimeRutas(String tipo) {
+    private static void imprimeRutasDiferencia(String tipo) {
     	if(tipo == "antes")
     		System.out.println("\nRUTAS ANTERIORMENTE DEFINIDAS ::::::::::::\n");
     		else if (tipo == "despues")
@@ -74,11 +77,11 @@ public class TestGestionRutas {
     
 	// Método para probar addRuta
     public static void testAddRuta() {
-    	imprimeRutas("antes");
+    	imprimeRutasDiferencia("antes");
         
     	creaRutaTest();
     	
-    	imprimeRutas("despues");
+    	imprimeRutasDiferencia("despues");
 
     }
 
@@ -87,12 +90,12 @@ public class TestGestionRutas {
     	// Crea el objeto
     	creaRutaTest();
     	
-    	imprimeRutas("antes");
+    	imprimeRutasDiferencia("antes");
         
         // Elimina
     	irutas.eliminarRuta(ruta);
     	
-    	imprimeRutas("despues");
+    	imprimeRutasDiferencia("despues");
     }
 
     // Método para probar eliminarRuta(int)
@@ -108,11 +111,11 @@ public class TestGestionRutas {
     	
     	int indice = leer.nextInt();
     	
-    	imprimeRutas("antes");
+    	imprimeRutasDiferencia("antes");
         
     	irutas.eliminarRuta(indice);
     	
-    	imprimeRutas("despues");
+    	imprimeRutasDiferencia("despues");
     }
 
     
