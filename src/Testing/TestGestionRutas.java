@@ -37,8 +37,8 @@ public class TestGestionRutas {
     	// Probar los métodos
     	
 //    	testVerRutas(); // Ejecutar este método a demanda, para poder comparar los resultados
-		testAddRuta();
-//		testEliminarRutaObjeto();
+//		testAddRuta();
+		testEliminarRutaObjeto();
 //		testEliminarRutaId();
 //		testRutasPorEmpleado();
 //		testRutasPorVehiculo();
@@ -58,6 +58,7 @@ public class TestGestionRutas {
         }
     }
     
+    /////////////////// Helpers //////////////////////
     
     // Método para inyectar la ruta extra
     private static void creaRutaTest() {
@@ -73,7 +74,13 @@ public class TestGestionRutas {
     	
     	testVerRutas();
     }
-
+    
+    /////////////////// Helpers //////////////////////
+    
+    
+    
+    
+    
     
 	// Método para probar addRuta
     public static void testAddRuta() {
