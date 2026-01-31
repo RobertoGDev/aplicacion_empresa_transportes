@@ -44,7 +44,7 @@ public class TestHerencia {
 		
 		crearListaVehiculos();
 		
-		System.out.println("CARGA DE LOS VEHÍCULOS ::::::::::::::\n");
+		System.out.println("\nCARGA DE LOS VEHÍCULOS ::::::::::::::\n");
 		for(Vehiculo veh: listaVehiculos) {
 			if(veh instanceof Camion cam) {				
 				System.out.println("Camión: " + cam.getMatricula() +
@@ -65,7 +65,7 @@ public class TestHerencia {
 		
 		crearListaVehiculos();
 		
-		System.out.println("LISTA DE VEHICULOS ::::::::::::::\n");
+		System.out.println("\nCARGA DISPONIBLE ::::::::::::::\n");
 		for(Vehiculo veh: listaVehiculos) {
 			if(veh instanceof Camion cam) {				
 				System.out.println(

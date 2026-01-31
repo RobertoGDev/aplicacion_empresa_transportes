@@ -119,20 +119,37 @@ public class Ruta {
 
 	public boolean isCargaCorrecta() {
 		// Comprobar que esta carga no excede la del vehículo asignado.
-		if (vehiculoUsado instanceof Camion) {
-			if (((Camion) vehiculoUsado).getCapacidadCargaKg() - getCargaTransportadaKg() >= 0.0) {
+		if (vehiculoUsado instanceof Camion camion) {
+			// Usar el método de Camión
+			if(camion.cargaDisponible() == 0) {
+				return false;
+			}
+			
+			if(camion.cargaDisponible() > cargaTransportadaKg) {
 				return true;
 			} else {
 				return false;
 			}
-		} else if (vehiculoUsado instanceof Furgoneta) {
-			// No podemos obtener la carga por diferencia de unidades
+			
+		} else if (vehiculoUsado instanceof Furgoneta furgoneta) {
+			// Usar el método de Furgoneta
+			if(furgoneta.isLleno()) {
+				return false;
+			};
+			
+			if(furgoneta.cargaDisponible() > cargaTransportadaKg) {
+				return true;
+			} else {
+				return false;
+			}
+			
 		}
 		return false;
 	}
 
 	public void modificarKilometrosYConsumolVehiculo() {
-		//TODO falta este método
+		vehiculoUsado.setConsumoLitros100km(calcularConsumoEstimado());
+		vehiculoUsado.setKilometrosTotales(vehiculoUsado.getKilometrosTotales() + getKmRecorridos());
 	}
 
 	public String getOrigenDestino() {

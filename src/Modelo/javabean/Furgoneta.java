@@ -52,7 +52,7 @@ public class Furgoneta extends Vehiculo {
 
 	@Override
 	public boolean isLleno() {
-		if(this.getPorcentajeCarga() == 100.0) { // Corregido el error
+		if(cargaDisponible() == 0) {
 			return true;
 		} else {			
 			return false;

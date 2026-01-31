@@ -95,9 +95,9 @@ public abstract class Vehiculo {
 		this.kilometrosTotales += kilometros;
 	}
 
-	protected void modificarConsumoLitros100Km(double consumo) {
-		this.consumoLitros100km = consumo; // Corregido el error
-	}
+//	protected void modificarConsumoLitros100Km(double consumo) {
+//		// Método comentado ya que sobra (Tomás - foro)
+//	}
 	
 	
 }
