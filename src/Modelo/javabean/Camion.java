@@ -70,7 +70,7 @@ public class Camion extends Vehiculo{
 	
 	@Override
 	public boolean isLleno() {
-		if(this.getPorcentajeCarga() == 100.0) {
+		if(cargaDisponible() == 0) {
 			return true;
 		} else {			
 			return false;
